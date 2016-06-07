@@ -1,6 +1,6 @@
 # One may have a look at http://docs.travis-ci.com/user/installing-dependencies/
-sudo: required
-dist: trusty
+sudo: true
+
 
 language: c
 env:
