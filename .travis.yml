@@ -11,16 +11,20 @@ env:
 git:
   depth: 1
 
-
-
+  
+install:
+  - sudo apt-get install -qq -y gcc-arm-linux-gnueabihf
+  - sudo apt-get install -qq -y u-boot-tools
+  - sudo apt-get install -qq -y lzop
+  
 before_script:
   # Store the home repository
-  #- arm-linux-gnueabihf-gcc --version
+  - arm-linux-gnueabihf-gcc --version
 
 script:
   - echo $pwd
   - ls
-  - sudo ./compile.sh BRANCH=default BOARD=cubietruck KERNEL_ONLY=yes PROGRESS_DISPLAY=plain RELEASE=jessie
+  - . ./compile.sh BRANCH=default BOARD=cubietruck KERNEL_ONLY=yes PROGRESS_DISPLAY=plain RELEASE=jessie
 
   
 
