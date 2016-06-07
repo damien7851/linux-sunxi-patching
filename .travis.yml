@@ -18,7 +18,7 @@ before_script:
   #- arm-linux-gnueabihf-gcc --version
 
 script:
-  - ./compile.sh BRANCH=default BOARD=cubietruck KERNEL_ONLY=yes PROGRESS_DISPLAY=plain RELEASE=jessie
+  - sudo . ./compile.sh BRANCH=default BOARD=cubietruck KERNEL_ONLY=yes PROGRESS_DISPLAY=plain RELEASE=jessie
 
   
 
