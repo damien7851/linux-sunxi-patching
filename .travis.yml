@@ -15,7 +15,7 @@ git:
 
 before_script:
   # Store the home repository
-  - arm-linux-gnueabihf-gcc --version
+  #- arm-linux-gnueabihf-gcc --version
 
 script:
   - ./compile.sh BRANCH=default BOARD=cubietruck KERNEL_ONLY=yes PROGRESS_DISPLAY=plain RELEASE=jessie
