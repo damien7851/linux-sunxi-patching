@@ -20,7 +20,7 @@ before_script:
 script:
   - echo $pwd
   - ls
-  - sudo . ./compile.sh BRANCH=default BOARD=cubietruck KERNEL_ONLY=yes PROGRESS_DISPLAY=plain RELEASE=jessie
+  - sudo ./compile.sh BRANCH=default BOARD=cubietruck KERNEL_ONLY=yes PROGRESS_DISPLAY=plain RELEASE=jessie
 
   
 
