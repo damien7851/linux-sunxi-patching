@@ -1,3 +1,4 @@
+set -e
 export ARCH=arm
 #export CC=arm-linux-gnueabihf-gcc-4.7
 export CROSS_COMPILE=arm-linux-gnueabihf-
