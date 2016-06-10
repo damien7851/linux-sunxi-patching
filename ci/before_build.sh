@@ -44,7 +44,7 @@ advanced_patch () {
 		for dir in "${dirs[@]}"; do
 			if [[ -f $dir/$name ]]; then
 				if [[ -s $dir/$name ]]; then
-					echo $dir $name $description
+					echo "$dir $name $description"
 					process_patch_file "$dir/$name" "$description"
 				else
 					echo "... $name" "skipped" "info"
@@ -77,18 +77,22 @@ process_patch_file() {
 	}
 
 #fetch patch form igor
-#git clone --depth 1 -n https://github.com/igorpecovnik/lib.git igor-patch
+git clone --depth 1 -n https://github.com/igorpecovnik/lib.git igor-patch
 
 #checkout patch fopr sun7i
 cd igor-patch
-#git checkout HEAD -- patch/kernel/sun7i-default/
+git checkout HEAD -- patch/kernel/sun7i-default/
 #clone kernel
 cd ..
-#git clone --depth 1 -b sunxi-3.4 https://github.com/linux-sunxi/linux-sunxi.git
+git clone --depth 1 -b sunxi-3.4 https://github.com/linux-sunxi/linux-sunxi.git
 
 cd linux-sunxi
 #patch
+
 advanced_patch ".."
+
+cd ..
+
 
 
 
