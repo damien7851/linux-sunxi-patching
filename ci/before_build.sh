@@ -40,6 +40,7 @@ advanced_patch () {
 		for dir in "${dirs[@]}"; do
 			if [[ -f $dir/$name ]]; then
 				if [[ -s $dir/$name ]]; then
+					echo $dir $name $description
 					process_patch_file "$dir/$name" "$description"
 				else
 					echo "... $name" "skipped" "info"
@@ -84,6 +85,7 @@ git clone --depth 1 -b sunxi-3.4 https://github.com/linux-sunxi/linux-sunxi.git
 cd linux-sunxi
 #patch
 advanced_patch 
+
 
 
 
