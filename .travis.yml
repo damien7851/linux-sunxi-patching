@@ -18,14 +18,15 @@ git:
  
 before_script:
   # Store the home repository
- 
+  - ls -ls
   - . ./ci/before_build.sh
-
+  - ls -la
 script:
 
 
   - export PATH=/usr/lib/ccache:$PATH
   - . ./ci/compile.sh
+  - ls -la
 
   
 
