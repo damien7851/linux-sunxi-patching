@@ -42,9 +42,10 @@ advanced_patch () {
 	# apply patches
 	for name in "${names_s[@]}"; do
 		for dir in "${dirs[@]}"; do
+			echo "process dir : $dir"
 			if [[ -f $dir/$name ]]; then
 				if [[ -s $dir/$name ]]; then
-					echo "$dir $name $description"
+					#echo "$dir $name $description"
 					process_patch_file "$dir/$name" "$description"
 				else
 					echo "... $name" "skipped" "info"
@@ -71,7 +72,7 @@ process_patch_file() {
 		| awk '{print $NF}' | sed -n 's/,//p' | xargs -I % sh -c 'rm %'
 
 	# main patch command
-	echo $patch $description
+	#echo $patch $description
 	patch --batch -p1 -N < $patch 
 
 	}
