@@ -24,5 +24,5 @@ cp ../linux-image* .
 cp ../uImage .
 
 git add .
-git commit -a -m "add modules pkg"
+git commit -a -m "add modules pkg patching version of armbian kernell"
 git push --quiet https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG bin

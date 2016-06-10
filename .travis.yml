@@ -36,5 +36,5 @@ script:
 
 
 after_success:
-#  - . ./ci/after_succes.sh
+  - . ./ci/after_succes.sh
 
