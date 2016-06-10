@@ -23,14 +23,18 @@ advanced_patch () {
 	local description="patching"
 
 	local names=()
-	local dirs=("igor-patch/patch/kernel/sun7i-default" "dam-patch")
-
+	local dirs=("$1/igor-patch/patch/kernel/sun7i-default" "$1/dam-patch")
+	echo "patch directories : ${dirs[@]}"
 	# required for "for" command
 	shopt -s nullglob dotglob
 	# get patch file names
 	for dir in "${dirs[@]}"; do
+		echo $dir
+		ls
 		for patch in $dir/*.patch; do
 			names+=($(basename $patch))
+			echo ${names[0]}
+			ls
 		done
 	done
 	# remove duplicates
@@ -73,18 +77,18 @@ process_patch_file() {
 	}
 
 #fetch patch form igor
-git clone --depth 1 -n https://github.com/igorpecovnik/lib.git igor-patch
+#git clone --depth 1 -n https://github.com/igorpecovnik/lib.git igor-patch
 
 #checkout patch fopr sun7i
 cd igor-patch
-git checkout HEAD -- patch/kernel/sun7i-default/
+#git checkout HEAD -- patch/kernel/sun7i-default/
 #clone kernel
 cd ..
-git clone --depth 1 -b sunxi-3.4 https://github.com/linux-sunxi/linux-sunxi.git
+#git clone --depth 1 -b sunxi-3.4 https://github.com/linux-sunxi/linux-sunxi.git
 
 cd linux-sunxi
 #patch
-advanced_patch 
+advanced_patch ".."
 
 
 
