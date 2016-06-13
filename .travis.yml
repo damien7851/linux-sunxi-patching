@@ -27,7 +27,8 @@ script:
 
 
   - export PATH=/usr/lib/ccache:$PATH
-  - . ./ci/compile.sh
+  - . ./ci/compile.sh linux-sun7i-default.config
+  #cubietruck_defconfig
 
   
 

@@ -3,7 +3,8 @@
 export ARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabihf-
 cd linux-sunxi
-make deb-pkg KDEB_PKGVERSION=1 LOCALVERSION=1 KBUILD_DEBARCH=armhf | grep -E 'dpkg-deb | warning | error'
+make deb-pkg KDEB_PKGVERSION=1 LOCALVERSION=1 KBUILD_DEBARCH=armhf
+# | grep -E 'dpkg-deb | warning | error'
 
 
 cp arch/arm/boot/uImage ../uImage

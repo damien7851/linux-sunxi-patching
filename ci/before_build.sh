@@ -33,7 +33,7 @@ advanced_patch () {
 		ls
 		for patch in $dir/*.patch; do
 			names+=($(basename $patch))
-			echo ${names[0]}
+			#echo ${names[0]}
 			ls
 		done
 	done
@@ -80,7 +80,7 @@ process_patch_file() {
 #fetch patch form igor
 git clone --depth 1 -n https://github.com/igorpecovnik/lib.git igor-patch
 
-#checkout patch fopr sun7i
+#checkout patch for sun7i
 cd igor-patch
 git checkout HEAD -- patch/kernel/sun7i-default/
 #clone kernel

@@ -1,0 +1,54 @@
+From 4e4d2f10ec54e150fb850e63e22c43f41195bcbc Mon Sep 17 00:00:00 2001
+From: damien7851 <damien.pageot78@gmail.com>
+Date: Mon, 13 Jun 2016 11:28:26 +0200
+Subject: [PATCH 1/1] add pcm enqueue in sunxi_pcm_trigger same in
+ sunxi-hdmipcm.c 	modified:   sound/soc/sunxi/spdif/sunxi_spdma.c
+
+---
+ sound/soc/sunxi/spdif/sunxi_spdma.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/sound/soc/sunxi/spdif/sunxi_spdma.c b/sound/soc/sunxi/spdif/sunxi_spdma.c
+index ec4ac99..69ab126 100644
+--- a/sound/soc/sunxi/spdif/sunxi_spdma.c
++++ b/sound/soc/sunxi/spdif/sunxi_spdma.c
+@@ -38,11 +38,15 @@ static volatile unsigned int dmasrc = 0;
+ static volatile unsigned int dmadst = 0;
+ 
+ static const struct snd_pcm_hardware sunxi_pcm_hardware = {
+-	.info			= SNDRV_PCM_INFO_INTERLEAVED | SNDRV_PCM_INFO_BLOCK_TRANSFER |
+-				      SNDRV_PCM_INFO_MMAP | SNDRV_PCM_INFO_MMAP_VALID |
+-				      SNDRV_PCM_INFO_PAUSE | SNDRV_PCM_INFO_RESUME,
++	.info			= SNDRV_PCM_INFO_INTERLEAVED |
++                    SNDRV_PCM_INFO_BLOCK_TRANSFER |
++                    SNDRV_PCM_INFO_MMAP |
++                    SNDRV_PCM_INFO_MMAP_VALID |
++                    SNDRV_PCM_INFO_PAUSE |
++                    SNDRV_PCM_INFO_RESUME,
+ 	.formats		= SNDRV_PCM_FMTBIT_S16_LE,
+-	.rates			= SNDRV_PCM_RATE_8000_192000 | SNDRV_PCM_RATE_KNOT,
++	.rates			= SNDRV_PCM_RATE_8000_192000 |
++                    SNDRV_PCM_RATE_KNOT,
+ 	.rate_min		= 8000,
+ 	.rate_max		= 192000,
+ 	.channels_min		= 1,
+@@ -247,6 +251,8 @@ static int sunxi_pcm_trigger(struct snd_pcm_substream *substream, int cmd)
+ 	case SNDRV_PCM_TRIGGER_START:
+ 	case SNDRV_PCM_TRIGGER_RESUME:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
++	    /* enqueue dma buffers */
++		sunxi_pcm_enqueue(substream);
+ 		sunxi_dma_start(prtd->params);
+ 		break;
+ 
+@@ -254,6 +260,7 @@ static int sunxi_pcm_trigger(struct snd_pcm_substream *substream, int cmd)
+ 	case SNDRV_PCM_TRIGGER_STOP:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+ 		sunxi_dma_stop(prtd->params);
++		prtd->dma_loaded = 0;
+ 		break;
+ 
+ 	default:
+-- 
+2.7.4.windows.1
+
